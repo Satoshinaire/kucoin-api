@@ -46,7 +46,6 @@ class Kucoin {
         'Content-Type': 'application/json'
       }
     }
-    console.log(options)
     if (method == 'post') {
       this.client.post(options, {}, (err, req, res, obj) => {
         if (err || !obj.success) {
