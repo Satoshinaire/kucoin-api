@@ -1,7 +1,7 @@
 {
-  "name": "kucoin",
+  "name": "kucoin-api",
   "version": "0.0.1",
-  "description": "KuCoin API wrapper",
+  "description": "Node.js client for the KuCoin API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,14 @@
     "api",
     "exchange"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Satoshinaire/kucoin-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Satoshinaire/kucoin-api/issues"
+  },
+  "homepage": "https://github.com/Satoshinaire/kucoin-api",
   "author": "Satoshinaire",
   "license": "MIT",
   "dependencies": {
