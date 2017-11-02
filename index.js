@@ -194,6 +194,16 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getLanguages().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509590811348,
+   *   "data": [["zh_CN", "中文简体", true], ["zh_HK", "中文繁体", true], ["en_US", "English", true], ["ja_JP", "日本語", true], ["ru_RU", "русский", true], ["pt_PT", "Portugues", true], ["de_DE", "Deutsch", true], ["nl_NL", "Nederlands", true], ["ko_KR", "한국어", true], ["fr_FR", "Français", true], ["es_ES", "Español", false]]
+   * }
    */
   getLanguages() {
     return this.doRequest('get', '/open/lang-list')
@@ -208,6 +218,16 @@ class Kucoin {
    * kc.changeLanguage({
    *   lang: 'en_US'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509590866149,
+   *   "data": null
+   * }
    */
   changeLanguage(params = {}) {
     return this.doSignedRequest('post', '/user/change-lang', params)
@@ -219,6 +239,35 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getUserInfo().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509590943414,
+   *   "data": {
+   *     "referrer_code": "XXXXXX",
+   *     "photoCredentialValidated": false,
+   *     "videoValidated": false,
+   *     "language": "en_US",
+   *     "csrf": "XXXXXXXXXXXXXXXXXXXXXXX=",
+   *     "oid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *     "baseFeeRate": 1,
+   *     "hasCredential": false,
+   *     "phoneValidated": true,
+   *     "phone": "",
+   *     "credentialValidated": false,
+   *     "googleTwoFaBinding": true,
+   *     "nickname": null,
+   *     "name": "",
+   *     "hasTradePassword": false,
+   *     "currency": null,
+   *     "emailValidated": true,
+   *     "email": "hello@example.com"
+   *   }
+   * }
    */
   getUserInfo() {
     return this.doSignedRequest('get', '/user/info')
@@ -230,6 +279,20 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getInviteCount().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509591130780,
+   *   "data": {
+   *     "countThree": 0,
+   *     "count": 0,
+   *     "countTwo": 0
+   *   }
+   * }
    */
   getInviteCount() {
     return this.doSignedRequest('get', '/referrer/descendant/count')
@@ -246,6 +309,20 @@ class Kucoin {
    * }).then(console.log).catch(console.error)
    * @example <caption>Retrieve data for all symbols:</caption>
    * kc.getPromotionRewardInfo().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509591205512,
+   *   "data": {
+   *     "grantCountDownSeconds": 219994,
+   *     "drawingCount": 0,
+   *     "assignedCount": 0
+   *   }
+   * }
    */
   getPromotionRewardInfo(params = {}) {
     params.coin = (params.symbol ? params.symbol : '')
@@ -263,6 +340,16 @@ class Kucoin {
    * }).then(console.log).catch(console.error)
    * @example <caption>Retrieve data for all symbols:</caption>
    * kc.getPromotionRewardSummary().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509591324280,
+   *   "data": []
+   * }
    */
   getPromotionRewardSummary(params = {}) {
     params.coin = (params.symbol ? params.symbol : '')
@@ -278,6 +365,26 @@ class Kucoin {
    * kc.getDepositAddress({
    *   symbol: 'NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509591494043,
+   *   "data": {
+   *     "oid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *     "address": "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   *     "context": null,
+   *     "userOid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *     "coinType": "GAS",
+   *     "createdAt": 1509354932000,
+   *     "deletedAt": null,
+   *     "updatedAt": 1509354932000,
+   *     "lastReceivedAt": 1509541029000
+   *   }
+   * }
    */
   getDepositAddress(params = {}) {
     return this.doSignedRequest('get', '/account/' + params.symbol + '/wallet/address')
@@ -322,9 +429,52 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getDepositAndWithdrawalRecords({
-   *   symbol: 'NEO',
-   *   type: 'SELL'
+   *   symbol: 'GAS'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509591779228,
+   *   "data": {
+   *     "total": 2,
+   *     "firstPage": true,
+   *     "lastPage": false,
+   *     "datas": [{
+   *       "coinType": "GAS",
+   *       "createdAt": 1509540909000,
+   *       "amount": 0.1117,
+   *       "address": "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "fee": 0,
+   *       "outerWalletTxid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@gas",
+   *       "remark": null,
+   *       "oid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "confirmation": 7,
+   *       "type": "DEPOSIT",
+   *       "status": "SUCCESS",
+   *       "updatedAt": 1509541029000
+   *     }, {
+   *       "coinType": "GAS",
+   *       "createdAt": 1509358609000,
+   *       "amount": 1.1249,
+   *       "address": "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "fee": 0,
+   *       "outerWalletTxid": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@gas",
+   *       "remark": null,
+   *       "oid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "confirmation": 6,
+   *       "type": "DEPOSIT",
+   *       "status": "SUCCESS",
+   *       "updatedAt": 1509358729000
+   *     }],
+   *     "currPageNo": 1,
+   *     "limit": 12,
+   *     "pageNos": 1
+   *   }
+   * }
    */
   getDepositAndWithdrawalRecords(params = {}) {
     return this.doSignedRequest('get', '/account/' + params.symbol + '/wallet/records', params)
@@ -339,7 +489,23 @@ class Kucoin {
    * kc.getBalance({
    *   symbol: 'NEO'
    * }).then(console.log).catch(console.error)
-   * @example <caption>Retrieve the balance for all coins:</caption>
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592077557,
+   *   "data": {
+   *     "coinType": "NEO",
+   *     "balanceStr": "10.72040467",
+   *     "freezeBalance": 0,
+   *     "balance": 10.72040467,
+   *     "freezeBalanceStr": "0.0"
+   *   }
+   * }
+   * @example <caption>Retrieve the balance for all coins (including zero balances):</caption>
    * kc.getBalance().then(console.log).catch(console.error)
    */
   getBalance(params = {}) {
@@ -358,6 +524,18 @@ class Kucoin {
    *   price: 0.608004
    *   type: 'SELL'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   success: true,
+   *   code: 'OK',
+   *   msg: 'OK',
+   *   timestamp: 1509592202904,
+   *   data: {
+   *     orderOid: 'xxxxxxxxxxxxxxxxxxxxxxxx'
+   *   }
+   * }
    */
   createOrder(params = {}) {
     params.symbol = params.pair
@@ -373,6 +551,19 @@ class Kucoin {
    * kc.getActiveOrders({
    *   pair: 'GAS-NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592278263,
+   *   "data": {
+   *     "SELL": [[1509592203000, "SELL", 1, 0.11206064, 0, "xxxxxxxxxxxxxxxxxxxxxxxx"]],
+   *     "BUY": []
+   *   }
+   * }
    */
   getActiveOrders(params = {}) {
     params.symbol = params.pair
@@ -389,6 +580,16 @@ class Kucoin {
    *   pair: 'GAS-NEO',
    *   txOid: '59fa71673b7468701cd714a1'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   success: true,
+   *   code: 'OK',
+   *   msg: 'Operation succeeded.',
+   *   timestamp: 1509592278426,
+   *   data: null
+   * }
    */
   cancelOrder(params = {}) {
     params.symbol = params.pair
@@ -404,6 +605,37 @@ class Kucoin {
    * kc.getDealtOrders({
    *   pair: 'GAS-NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592427203,
+   *   "data": {
+   *     "total": 1,
+   *     "firstPage": true,
+   *     "lastPage": false,
+   *     "datas": [{
+   *       "coinType": "GAS",
+   *       "createdAt": 1509455416000,
+   *       "amount": 0.14494322,
+   *       "dealValue": 0.0929086,
+   *       "fee": 0.00009291,
+   *       "dealDirection": "SELL",
+   *       "coinTypePair": "NEO",
+   *       "oid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "dealPrice": 0.641,
+   *       "orderOid": "xxxxxxxxxxxxxxxxxxxxxxxx",
+   *       "feeRate": 0.001,
+   *       "direction": "SELL"
+   *     }],
+   *     "currPageNo": 1,
+   *     "limit": 12,
+   *     "pageNos": 1
+   *   }
+   * }
    */
   getDealtOrders(params = {}) {
     params.symbol = params.pair
@@ -419,6 +651,33 @@ class Kucoin {
    * kc.getTicker({
    *   pair: 'GAS-NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592566746,
+   *   "data": {
+   *     "coinType": "GAS",
+   *     "trading": true,
+   *     "symbol": "GAS-NEO",
+   *     "lastDealPrice": 0.627999,
+   *     "buy": 0.608004,
+   *     "sell": 0.628,
+   *     "change": 0.019994,
+   *     "coinTypePair": "NEO",
+   *     "sort": 0,
+   *     "feeRate": 0.001,
+   *     "volValue": 5246.36133161,
+   *     "high": 0.635,
+   *     "datetime": 1509592566000,
+   *     "vol": 8499.38951847,
+   *     "low": 0.601101,
+   *     "changeRate": 0.0329
+   *   }
+   * }
    */
   getTicker(params = {}) {
     return this.doRequest('get', '/' + params.pair + '/open/tick')
@@ -433,11 +692,34 @@ class Kucoin {
    * kc.getOrderBooks({
    *   pair: 'GAS-NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592645132,
+   *   "data": {
+   *     "SELL": [[0.628, 227.1374, 142.6422872], [0.632999, 10, 6.32999], [0.633, 4.20740806, 2.6632893], [0.65, 0.6346, 0.41249], [0.6611, 6.7998, 4.49534778], [0.665699, 0.1875, 0.12481856]],
+   *     "BUY": [[0.608004, 9.8481, 5.98768419], [0.608003, 21.9264, 13.33131698], [0.608001, 43.8442, 26.65731744], [0.604001, 25.5521, 15.43349395], [0.603, 1.0561, 0.6368283], [0.602006, 25, 15.05015]]
+   *   }
+   * }
    * @example <caption>Retrieve only SELL orders currently on the books for the GAS-NEO trading pair:</caption>
    * kc.getOrderBooks({
    *   pair: 'GAS-NEO',
    *   type: 'SELL'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592734633,
+   *   "data": [[0.628, 227.1374, 142.6422872], [0.632999, 10, 6.32999], [0.633, 4.20740806, 2.6632893], [0.65, 0.6346, 0.41249], [0.6611, 6.7998, 4.49534778], [0.665699, 0.1875, 0.12481856]]
+   * }
    */
   getOrderBooks(params = {}) {
     params.symbol = params.pair
@@ -453,6 +735,16 @@ class Kucoin {
    * kc.getRecentlyDealtOrders({
    *   pair: 'GAS-NEO'
    * }).then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592783348,
+   *   "data": [[1509591191000, "SELL", 0.608005, 10.771, 6.54882186], [1509591198000, "SELL", 0.608005, 10.7648, 6.54505222], [1509591512000, "SELL", 0.608005, 13.0292, 7.92181875], [1509591714000, "BUY", 0.627999, 19.9774, 12.54578722], [1509591951000, "SELL", 0.608005, 15.6217, 9.49807171], [1509592026000, "SELL", 0.608005, 15.2009, 9.2422232], [1509592105000, "SELL", 0.608005, 13.4969, 8.20618268], [1509592219000, "BUY", 0.627999, 20.9506, 13.15695585], [1509592311000, "BUY", 0.627999, 23.5278, 14.77543487], [1509592724000, "SELL", 0.608005, 8.6837, 5.27973302]]
+   * }
    */
   getRecentlyDealtOrders(params = {}) {
     return this.doRequest('get', '/' + params.pair + '/open/deal-orders', params)
@@ -464,6 +756,35 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getTradingSymbols().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509592839027,
+   *   "data": [{
+   *     "coinType": "KCS",
+   *     "trading": true,
+   *     "symbol": "KCS-BTC",
+   *     "lastDealPrice": 0.00009277,
+   *     "buy": 0.00009003,
+   *     "sell": 0.0000927,
+   *     "change": -0.00000322,
+   *     "coinTypePair": "BTC",
+   *     "sort": 0,
+   *     "feeRate": 0.001,
+   *     "volValue": 139.78123495,
+   *     "high": 0.00012281,
+   *     "datetime": 1509592836000,
+   *     "vol": 1347022.79127505,
+   *     "low": 0.0000835,
+   *     "changeRate": -0.0335
+   *   }, {
+   *     ...
+   *   }]
+   * }
    */
   getTradingSymbols() {
     return this.doRequest('get', '/market/open/symbols')
@@ -475,6 +796,21 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getTrending().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509593321973,
+   *   "data": [{
+   *     "coinPair": "KCS-BTC",
+   *     "deals": [[1509591600000, 0.0000928], [1509588000000, 0.00009421], [1509584400000, 0.00009134], [1509580800000, 0.000096], [1509577200000, 0.00010014], [1509573600000, 0.00010293], [1509570000000, 0.00010368], [1509566400000, 0.000107], [1509562800000, 0.00010496], [1509559200000, 0.0001057], [1509555600000, 0.000108], [1509552000000, 0.0001117], [1509548400000, 0.0001142], [1509544800000, 0.000114], [1509541200000, 0.000114], [1509537600000, 0.0001135], [1509534000000, 0.0001135], [1509530400000, 0.0001011], [1509526800000, 0.00010799], [1509523200000, 0.00011405], [1509519600000, 0.0001164], [1509516000000, 0.00012099], [1509512400000, 0.00012107], [1509508800000, 0.00012244], [1509505200000, 0.00012281], [1509501600000, 0.00012295], [1509498000000, 0.00012348], [1509494400000, 0.0001242], [1509490800000, 0.00012895], [1509487200000, 0.00012897], [1509483600000, 0.00012899], [1509480000000, 0.00012849], [1509476400000, 0.00012987], [1509472800000, 0.00013], [1509469200000, 0.00013188], [1509465600000, 0.00012978], [1509462000000, 0.00012978], [1509458400000, 0.000126], [1509454800000, 0.00012978], [1509451200000, 0.00012562], [1509447600000, 0.00012999], [1509444000000, 0.00013009], [1509440400000, 0.0001346], [1509436800000, 0.00013465], [1509433200000, 0.00013465], [1509429600000, 0.00013376], [1509426000000, 0.00013465], [1509422400000, 0.00013457], [1509418800000, 0.00013489], [1509415200000, 0.00013693], [1509411600000, 0.0001329], [1509408000000, 0.00013499], [1509404400000, 0.00013711], [1509400800000, 0.00013723], [1509397200000, 0.00013999], [1509393600000, 0.00013992], [1509390000000, 0.00014195], [1509386400000, 0.00014284], [1509382800000, 0.0001425], [1509379200000, 0.00014286], [1509375600000, 0.00014406], [1509372000000, 0.00014591], [1509368400000, 0.00014647], [1509364800000, 0.0001457], [1509361200000, 0.00014575], [1509357600000, 0.00014659], [1509354000000, 0.00014998], [1509350400000, 0.0001517], [1509346800000, 0.0001488], [1509343200000, 0.0001488], [1509339600000, 0.00014999], [1509336000000, 0.0001521]]
+   *   }, {
+   *     ...
+   *   }]
+   * }
    */
   getTrending() {
     return this.doRequest('get', '/market/open/coins-trending')
@@ -486,6 +822,28 @@ class Kucoin {
    * @return {Promise} An object containing the API response.
    * @example
    * kc.getCoins().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509593539250,
+   *   "data": [{
+   *     "withdrawMinFee": 2,
+   *     "withdrawMinAmount": 50,
+   *     "withdrawFeeRate": 0.001,
+   *     "confirmationCount": 12,
+   *     "name": "Kucoin Shares",
+   *     "tradePrecision": 4,
+   *     "enableWithdraw": true,
+   *     "enableDeposit": true,
+   *     "coin": "KCS"
+   *   }, {
+   *     ...
+   *   }]
+   * }
    */
   getCoins() {
     return this.doRequest('get', '/market/open/coins-list')
