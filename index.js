@@ -110,8 +110,11 @@ class Kucoin {
     return this.doSignedRequest('get', '/referrer/descendant/count')
   }
 
-  getPromotionRewardInfo() {
-    return this.doSignedRequest('get', '/account/promotion/info')
+  getPromotionRewardInfo(params) {
+    if (params) {
+      params.coin = (params.symbol ? params.symbol : '')
+    }
+    return this.doSignedRequest('get', '/account/' + (params != undefined && params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/info', params)
   }
 
   getPromotionRewardSummary() {
