@@ -298,12 +298,14 @@ class Kucoin {
   /**
    * Retrieve balance for a particular coin.
    * @access public
-   * @param {{symbol: string}} params The coin's symbol for the balance you want to retrieve.
+   * @param {{symbol: string}} [params] The coin's symbol for the balance you want to retrieve.
    * @return {Promise} An object containing the API response.
-   * @example
+   * @example <caption>Retrieve the balance for NEO:</caption>
    * kc.getBalance({
    *   symbol: 'NEO'
    * }).then(console.log).catch(console.error)
+   * @example <caption>Retrieve the balance for all coins:</caption>
+   * kc.getBalance().then(console.log).catch(console.error)
    */
   getBalance(params = {}) {
     return this.doSignedRequest('get', '/account/' + (params.symbol ? params.symbol + '/' : '') + 'balance')
