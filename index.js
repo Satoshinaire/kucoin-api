@@ -110,18 +110,14 @@ class Kucoin {
     return this.doSignedRequest('get', '/referrer/descendant/count')
   }
 
-  getPromotionRewardInfo(params) {
-    if (params) {
-      params.coin = (params.symbol ? params.symbol : '')
-    }
-    return this.doSignedRequest('get', '/account/' + (params != undefined && params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/info', params)
+  getPromotionRewardInfo(params = {}) {
+    params.coin = (params.symbol ? params.symbol : '')
+    return this.doSignedRequest('get', '/account/' + (params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/info', params)
   }
 
-  getPromotionRewardSummary(params) {
-    if (params) {
-      params.coin = (params.symbol ? params.symbol : '')
-    }
-    return this.doSignedRequest('get', '/account/' + (params != undefined && params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/sum')
+  getPromotionRewardSummary(params = {}) {
+    params.coin = (params.symbol ? params.symbol : '')
+    return this.doSignedRequest('get', '/account/' + (params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/sum')
   }
 
   getDepositAddress(params = {}) {
