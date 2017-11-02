@@ -117,8 +117,11 @@ class Kucoin {
     return this.doSignedRequest('get', '/account/' + (params != undefined && params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/info', params)
   }
 
-  getPromotionRewardSummary() {
-    return this.doSignedRequest('get', '/account/promotion/sum')
+  getPromotionRewardSummary(params) {
+    if (params) {
+      params.coin = (params.symbol ? params.symbol : '')
+    }
+    return this.doSignedRequest('get', '/account/' + (params != undefined && params.symbol != undefined ? params.symbol + '/' : '') + 'promotion/sum')
   }
 
   getDepositAddress(params = {}) {
