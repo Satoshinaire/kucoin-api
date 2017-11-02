@@ -354,6 +354,7 @@ class Kucoin {
    * }).then(console.log).catch(console.error)
    */
   cancelOrder(params = {}) {
+    params.symbol = params.pair
     return this.doSignedRequest('post', '/cancel-order', params)
   }
 
