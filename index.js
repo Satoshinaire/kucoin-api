@@ -139,7 +139,7 @@ class Kucoin {
   /**
    * Retrieve exchange rates for coins.
    * @access public
-   * @param {{symbols: string[]}} [params] An Array of symbols, or if blank the entire list will be returned.
+   * @param {{symbols: string[]}} [params] An Array of symbols, or if blank BTC will be returned.
    * @return {Promise} An object containing the API response.
    * @example <caption>Specify one or more symbols:</caption>
    * kc.getExchangeRates({
