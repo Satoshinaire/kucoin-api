@@ -162,15 +162,8 @@ class Kucoin {
   }
 
   getOrderBooks(params = {}) {
-    return this.doRequest('get', '/' + params.pair + '/open/orders', params)
-  }
-
-  getBuyOrderBooks(params = {}) {
-    return this.doRequest('get', '/' + params.pair + '/open/orders-buy', params)
-  }
-
-  getSellOrderBooks(params = {}) {
-    return this.doRequest('get', '/' + params.pair + '/open/orders-sell', params)
+    params.symbol = params.pair
+    return this.doRequest('get', '/' + params.pair + '/open/orders' + (params.type ? '-' + params.type.toLowerCase() : ''), params)
   }
 
   getRecentlyDealtOrders(params = {}) {
