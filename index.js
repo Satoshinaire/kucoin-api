@@ -142,10 +142,12 @@ class Kucoin {
   }
 
   createOrder(params = {}) {
+    params.symbol = params.pair
     return this.doSignedRequest('post', '/order', params)
   }
 
   getActiveOrders(params = {}) {
+    params.symbol = params.pair
     return this.doSignedRequest('get', '/' + params.pair + '/order/active', params)
   }
 
@@ -154,6 +156,7 @@ class Kucoin {
   }
 
   getDealtOrders(params = {}) {
+    params.symbol = params.pair
     return this.doSignedRequest('get', '/' + params.pair + '/deal-orders', params)
   }
 
