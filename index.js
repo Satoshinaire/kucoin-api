@@ -145,8 +145,43 @@ class Kucoin {
    * kc.getExchangeRates({
    *   symbols: ['NEO','GAS']
    * }).then(console.log).catch(console.error)
-   * @example <caption>Retrieve data for all symbols:</caption>
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509589905631,
+   *   "data": {
+   *     "currencies": [["USD", "$"], ["EUR", "€"], ["AUD", "$"], ["CAD", "$"], ["CHF", "CHF"], ["CNY", "¥"], ["GBP", "£"], ["JPY", "¥"], ["NZD", "$"], ["BGN", "лв."], ["BRL", "R$"], ["CZK", "Kč"], ["DKK", "kr"], ["HKD", "$"], ["HRK", "kn"], ["HUF", "Ft"], ["IDR", "Rp"], ["ILS", "₪"], ["INR", "₹"], ["KRW", "₩"], ["MXN", "$"], ["MYR", "RM"], ["NOK", "kr"], ["PHP", "₱"], ["PLN", "zł"], ["RON", "lei"], ["RUB", "₽"], ["SEK", "kr"], ["SGD", "$"], ["THB", "฿"], ["TRY", "₺"], ["ZAR", "R"]],
+   *     "rates": {
+   *       "GAS": { "CHF": 14.57, "HRK": 94.19, "MXN": 279.02, "ZAR": 205.31, "INR": 939.59, "CNY": 96.15, "THB": 482.3, "AUD": 18.95, "ILS": 51.16, "KRW": 16176.81, "JPY": 1660.88, "PLN": 53.03, "GBP": 10.94, "IDR": 197577.69, "HUF": 3904.86, "PHP": 751.63, "TRY": 55.6, "RUB": 845.61, "HKD": 113.47, "EUR": 12.52, "DKK": 93.21, "USD": 14.54, "CAD": 18.77, "MYR": 61.54, "BGN": 24.49, "NOK": 118.5, "RON": 57.66, "SGD": 19.8, "CZK": 320.11, "SEK": 122.16, "NZD": 21.12, "BRL": 47.78
+   *       },
+   *       "NEO": {
+   *         "CHF": 25.33, "HRK": 163.66, "MXN": 484.81, "ZAR": 356.73, "INR": 1632.55, "CNY": 167.07, "THB": 838.01, "AUD": 32.94, "ILS": 88.89, "KRW": 28107.31, "JPY": 2885.78, "PLN": 92.14, "GBP": 19.01, "IDR": 343292.4, "HUF": 6784.72, "PHP": 1305.97, "TRY": 96.61, "RUB": 1469.25, "HKD": 197.16, "EUR": 21.76, "DKK": 161.95, "USD": 25.27, "CAD": 32.61, "MYR": 106.93, "BGN": 42.56, "NOK": 205.9, "RON": 100.18, "SGD": 34.4, "CZK": 556.2, "SEK": 212.27, "NZD": 36.7, "BRL": 83.02
+   *       }
+   *     }
+   *   }
+   * }
+   * @example <caption>Retrieve data for BTC by default:</caption>
    * kc.getExchangeRates().then(console.log).catch(console.error)
+   * 
+   * // Returns:
+   * 
+   * {
+   *   "success": true,
+   *   "code": "OK",
+   *   "msg": "Operation succeeded.",
+   *   "timestamp": 1509590207497,
+   *   "data": {
+   *     "rates": {
+   *       "BTC": { "CHF": 6817.62, "HRK": 44045.89, "MXN": 130476.13, "ZAR": 96007.15, "INR": 439363.98, "CNY": 44963.39, "THB": 225531.1, "AUD": 8865.49, "ILS": 23923.57, "KRW": 7564405.86, "JPY": 776640.44, "PLN": 24798.21, "GBP": 5118.25, "IDR": 92388859.2, "HUF": 1825945.01, "PHP": 351470.78, "TRY": 26002.05, "RUB": 395413.97, "HKD": 53061.7, "EUR": 5857.14, "DKK": 43586.13, "USD": 6801.3, "CAD": 8777.75, "MYR": 28779.7, "BGN": 11455.42, "NOK": 55414.27, "RON": 26962.39, "SGD": 9259.28, "CZK": 149689.81, "SEK": 57127.51, "NZD": 9878.88, "BRL": 22344.99
+   *       }
+   *     },
+   *     "currencies": [["USD", "$"], ["EUR", "€"], ["AUD", "$"], ["CAD", "$"], ["CHF", "CHF"], ["CNY", "¥"], ["GBP", "£"], ["JPY", "¥"], ["NZD", "$"], ["BGN", "лв."], ["BRL", "R$"], ["CZK", "Kč"], ["DKK", "kr"], ["HKD", "$"], ["HRK", "kn"], ["HUF", "Ft"], ["IDR", "Rp"], ["ILS", "₪"], ["INR", "₹"], ["KRW", "₩"], ["MXN", "$"], ["MYR", "RM"], ["NOK", "kr"], ["PHP", "₱"], ["PLN", "zł"], ["RON", "lei"], ["RUB", "₽"], ["SEK", "kr"], ["SGD", "$"], ["THB", "฿"], ["TRY", "₺"], ["ZAR", "R"]]
+   *   }
+   * }
    */
   getExchangeRates(params = {}) {
     params.coins = (params.symbols ? params.symbols.join(',') : '')
